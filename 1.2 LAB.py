@@ -172,4 +172,132 @@ print(randrange(0, 1, 1), end=' ')
 print(randint(0, 1))
 >> 0
 
+# 1.8
+from random import randint
 
+for i in range(10):
+    print(randint(1, 10), end=',')
+>>
+6,5,4,4,3,4,10,7,10,7,
+10,7,5,5,5,8,1,1,5,10,
+
+# The choice and sample functions
+# It's a function named in a very suggestive way - choice:
+
+# choice(sequence)
+# sample(sequence, elements_to_choose)
+# The first variant chooses a "random" element from the input sequence and returns it.
+
+# The second one builds a list (a sample) consisting of the elements_to_choose element "drawn" from the input sequence.
+
+# In other words, the function chooses some of the input elements, returning a list with the choice. The elements in the sample are placed in random order. Note: the elements_to_choose must not be greater than the length of the input sequence.
+
+from random import choice, sample
+
+my_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print(choice(my_list))
+>> 7
+print(sample(my_list, 5))
+>> [9, 2, 4, 6, 8]
+print(sample(my_list, 10))
+>> [5, 10, 6, 3, 1, 4, 9, 7, 8, 2]
+
+# 1.10
+# Selected functions from the platform module
+# The platform function
+
+# The platform module lets you access the underlying platform's data, i.e., hardware, operating system, and interpreter version information.
+
+# There is a function that can show you all the underlying layers in one glance, named platform, too. It just returns a string describing the environment; thus, its output is rather addressed to humans than to automated processing (you'll see it soon).
+
+# This is how you can invoke it:
+
+# platform(aliased = False, terse = False)
+# aliased → when set to True (or any non-zero value) it may cause the function to present the alternative underlying layer names instead of the common ones;
+# terse → when set to True (or any non-zero value) it may convince the function to present a briefer form of the result (if possible)
+from platform import platform
+
+print(platform())
+>> Linux-4.4.0-210-generic-x86_64-with
+print(platform(1))
+>> Linux-4.4.0-210-generic-x86_64-with
+print(platform(0, 1))
+>> Linux-4.4.0-210-generic-x86_64-with
+
+# 1.11
+# Selected functions from the platform module
+# The machine function
+# Sometimes, you may just want to know the generic name of the processor which runs your OS together with Python and your code - a function named machine() will tell you that. As previously, the function returns a string.
+from platform import machine
+
+print(machine())
+>> x86_64
+
+# 1.12
+# Selected functions from the platform module
+# The processor function
+# The processor() function returns a string filled with the real processor name (if possible).
+from platform import processor
+
+print(processor())
+>> x86
+
+# 1.13
+# Selected functions from the platform module
+# The system function
+# A function named system() returns the generic OS name as a string.
+from platform import system
+
+print(system())
+>> Linux
+
+# 1.14
+# Selected functions from the platform module
+# The version function
+# The OS version is provided as a string by the version() function.
+from platform import version
+
+print(version())
+>> #242-Ubuntu SMP Fri Apr 16 09:57:56 UTC 2021
+
+# 1.15
+# Selected functions from the platform module
+# The python_implementation and the python_version_tuple functions
+# If you need to know what version of Python is running your code, you can check it using a number of dedicated functions - here are two of them:
+
+# python_implementation() → returns a string denoting the Python implementation (expect CPython here, unless you decide to use any non-canonical Python branch)
+
+# python_version_tuple() → returns a three-element tuple filled with:
+# the major part of Python's version;
+# the minor part;
+# the patch level number.
+from platform import python_implementation, python_version_tuple
+
+print(python_implementation())
+
+for atr in python_version_tuple():
+    print(atr)
+>>
+CPython
+3
+7
+10
+
+# 1.17
+# What is the expected value of the result variable after the following code is executed?
+import math
+result = math.e == math.exp(1)
+>> True
+
+# (Complete the sentence) Setting the generator's seed with the same value each time your program is run guarantees that...
+>> ... the pseudo-random values emitted from the random module will be exactly the same.
+
+# Which of the platform module's functions will you use to determine the name of the CPU running inside your computer?
+>> The processor() function
+
+# What is the expected output of the following snippet?
+
+import platform
+print(len(platform.python_version_tuple()))
+>> 3
