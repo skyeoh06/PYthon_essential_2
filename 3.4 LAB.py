@@ -209,9 +209,9 @@ class Python(Snake):
 
 
 print(Python.__name__, 'is a', Snake.__name__)
+>> Python is a Snake
 print(Python.__bases__[0].__name__, 'can be a', Python.__name__)
->>
-Python is a Snake
-Snake can be a Python
-
+>> Snake can be a Python
+print(Python.__bases__)
+>> (<class '__main__.Snake'>,)
 
