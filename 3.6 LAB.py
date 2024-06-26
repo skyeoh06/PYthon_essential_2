@@ -270,3 +270,112 @@ Division by zero
 Division by zero
 Original division by zero
 My division by zero
+
+#1.7
+#You can start building it by defining a general exception as a new base class for any other specialized exception. 
+#Note: we're going to collect more specific information here than a regular Exception does, so our constructor will take two arguments:
+
+#one specifying a pizza as a subject of the process,and one containing a more or less precise description of the problem.
+#As you can see, we pass the second parameter to the superclass constructor, and save the first inside our own property.
+#A more specific problem (like an excess of cheese) can require a more specific exception. It's possible to derive the new class from the already defined PizzaError class.
+#The TooMuchCheeseError exception needs more information than the regular PizzaError exception, so we add it to the constructor – the name cheese is then stored for further processing.
+
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(self, message)
+        self.pizza = pizza
+
+
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError._init__(self, pizza, message)
+        self.cheese = cheese
+
+
+#1.8
+#Look at the code in the editor. We've coupled together the two previously defined exceptions and harnessed them to work in a small example snippet.
+#One of these is raised inside the make_pizza() function when any of these two erroneous situations is discovered: a wrong pizza request, or a request for too much cheese.
+#Note:
+#removing the branch starting with except TooMuchCheeseError will cause all appearing exceptions to be classified as PizzaError;
+#removing the branch starting with except PizzaError will cause the TooMuchCheeseError exceptions to remain unhandled, and will cause the program to terminate.
+#The previous solution, although elegant and efficient, has one important weakness. Due to the somewhat easygoing way of declaring the constructors, the new exceptions cannot be used as they are without a full list of required arguments.
+#We'll remove this weakness by setting the default values for all constructor parameters. 
+
+class PizzaError(Exception):
+    def __init__(self, pizza, message):
+        Exception.__init__(self, message)
+        self.pizza = pizza
+
+
+class TooMuchCheeseError(PizzaError):
+    def __init__(self, pizza, cheese, message):
+        PizzaError.__init__(self, pizza, message)
+        self.cheese = cheese
+
+
+def make_pizza(pizza, cheese):
+    if pizza not in ['margherita', 'capricciosa', 'calzone']:
+        raise PizzaError(pizza, "no such pizza on the menu")
+    if cheese > 100:
+        raise TooMuchCheeseError(pizza, cheese, "too much cheese")
+    print("Pizza ready!")
+
+for (pz, ch) in [('calzone', 0), ('margherita', 110), ('mafia', 20)]:
+    try:
+        make_pizza(pz, ch)
+    except TooMuchCheeseError as tmce:
+        print(tmce, ':', tmce.cheese)
+    except PizzaError as pe:
+        print(pe, ':', pe.pizza)
+
+>>
+Pizza ready!
+too much cheese : 110
+no such pizza on the menu : mafia
+
+
+#1.9
+#What is the expected output of the following code?
+
+import math
+
+try:
+    print(math.sqrt(9))
+except ValueError:
+    print("inf")
+else:
+    print("fine")
+>>
+3.0
+fine
+
+#What is the expected output of the following code?
+
+import math
+
+try:
+    print(math.sqrt(-9))
+except ValueError:
+    print("inf")
+else:
+    print("fine")
+finally:
+    print("the end")
+>>
+inf
+the end
+
+#What is the expected output of the following code?
+
+import math
+
+class NewValueError(ValueError):
+    def __init__(self, name, color, state):
+        self.data = (name, color, state)
+
+try:
+    raise NewValueError("Enemy warning", "Red alert", "High readiness")
+except NewValueError as nve:
+    for arg in nve.args:
+        print(arg, end='! ')
+>> Enemy warning! Red alert! High readiness!
