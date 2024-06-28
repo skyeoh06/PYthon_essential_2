@@ -206,5 +206,73 @@ fibs = list(fibonacci(10))
 print(fibs)
 >> [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 
+#1.6
+#list comprehension - a simple and very impressive way of creating lists and their content.
+list_1 = []
+
+for ex in range(6):
+    list_1.append(10 ** ex)
+
+list_2 = [10 ** ex for ex in range(6)]
+
+print(list_1)
+>> [1, 10, 100, 1000, 10000, 100000]
+print(list_2)
+>> [1, 10, 100, 1000, 10000, 100000]
+
+#1.7
+#conditional expression - a way of selecting one of two different values based on the result of a Boolean expression.
+#expression_one if condition else expression_two
+#The value it provides is equal to expression_one when the condition is True, and expression_two otherwise.
+
+the_list = []
+
+for x in range(10):
+    the_list.append(1 if x % 2 == 0 else 0)
+
+print(the_list)
+>> [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+
+#1.8
+the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
+
+print(the_list)
+>> [1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+
+#turns a list comprehension into a generator:
+the_list = [1 if x % 2 == 0 else 0 for x in range(10)]
+the_generator = (1 if x % 2 == 0 else 0 for x in range(10))
+
+for v in the_list:
+    print(v, end=" ")
+print()
+>> 1 0 1 0 1 0 1 0 1 0 
+
+for v in the_generator:
+    print(v, end=" ")
+print()
+>> 1 0 1 0 1 0 1 0 1 0 
+
+print(len(the_list))
+>> 10
+print(len(the_generator))
+>> print(len(the_generator))
+TypeError: object of type 'generator' has no len()
+
+for v in [1 if x % 2 == 0 else 0 for x in range(10)]:
+    print(v, end=" ")
+print()
+>> 1 0 1 0 1 0 1 0 1 0 
+
+for v in (1 if x % 2 == 0 else 0 for x in range(10)):
+    print(v, end=" ")
+print()
+>> 1 0 1 0 1 0 1 0 1 0 
+
+
+
+
+
+
 
 
