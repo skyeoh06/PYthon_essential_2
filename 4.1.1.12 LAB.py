@@ -12,6 +12,14 @@ data = [randint(-10,10) for x in range(5)]
 filtered = list(filter(lambda x: x > 0 and x % 2 == 0, data))
 
 print(data)
->> [-5, -7, -3, -8, 8]
 print(filtered)
->> [8]
+[-5, -7, -3, -8, 8]
+[8]
+[3, 5, 0, -4, -7]
+[]
+[-7, -4, 3, 10, 5]
+[10]
+[5, -4, -3, 8, -2]
+[8]
+[3, 6, 4, -4, 6]
+[6, 4, 6]
