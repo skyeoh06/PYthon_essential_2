@@ -269,7 +269,51 @@ for v in (1 if x % 2 == 0 else 0 for x in range(10)):
 print()
 >> 1 0 1 0 1 0 1 0 1 0 
 
+#1.9
+two = lambda: 2
+sqr = lambda x: x * x
+pwr = lambda x, y: x ** y
 
+for a in range(-2, 3):
+    print(sqr(a), end=" ")
+    print(pwr(a, two()))
+>>
+4 4
+1 1
+0 0
+1 1
+4 4
+
+#1.10
+#How to use lambdas and what for?
+#The most interesting part of using lambdas appears when you can use them in their pure form - as anonymous parts of code intended to evaluate a result.
+        print('f(', x,')=', fun(x), sep='')
+
+
+def poly(x):
+    return 2 * x**2 - 4 * x + 2
+
+
+print_function([x for x in range(-2, 3)], poly)
+>>
+f(-2)=18
+f(-1)=8
+f(0)=2
+f(1)=0
+f(2)=2
+
+#efining the poly() function as lambda
+def print_function(args, fun):
+    for x in args:
+        print('f(', x,')=', fun(x), sep='')
+
+print_function([x for x in range(-2, 3)], lambda x: 2 * x**2 - 4 * x + 2)
+>>
+f(-2)=18
+f(-1)=8
+f(0)=2
+f(1)=0
+f(2)=2
 
 
 
