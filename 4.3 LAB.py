@@ -375,6 +375,31 @@ except IOError as e:
 >> 0xa 0xb 0xc 0xd 0xe 0xf 0x10 0x11
 
 
+#1.18
+#What do we expect from the readlines() method when the stream is associated with an empty file?
+>> An empty list (a zero-length list).
 
+#What is the following code intended to do?
+
+for line in open("file", "rt"):
+    for char in line:
+        if char.lower() not in "aeiouy ":
+            print(char, end='')
+
+>> It copies the file's contents to the console, ignoring all vowels.
+
+#You're going to process a bitmap stored in a file named image.png, and you want to read its contents as a whole into a bytearray variable named image. Add a line to the following code to achieve this goal.
+
+try:
+    stream = open("image.png", "rb")
+    # Insert a line here.
+    stream.close()
+except IOError:
+    print("failed")
+else:
+    print("success")
+
+
+>>image = bytearray(stream.read())
 
 
