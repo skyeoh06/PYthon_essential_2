@@ -226,3 +226,22 @@ print(dt)
 #As a result of these operations, we receive date and datetime objects increased by days and hours stored in the timedelta object.
 #The presented multiplication operation allows you to quickly increase the value of the timedelta object, while multiplication can also help you get a date from the future.
 #Of course, the timedelta, date, and datetime classes support many more operations.
+
+#23
+#What is the output of the following snippet?
+
+from datetime import time
+
+t = time(14, 53)
+print(t.strftime("%H:%M:%S"))
+>> 14:53:00
+
+#What is the output of the following snippet?
+
+from datetime import datetime
+
+dt1 = datetime(2020, 9, 29, 14, 41, 0)
+dt2 = datetime(2020, 9, 28, 14, 41, 0)
+
+print(dt1 - dt2)
+>> 1 day, 0:00:00
