@@ -150,7 +150,7 @@ print(time.strptime("2019/11/28 22:53:00", "%Y/%m/%d %H:%M:%S"))
 #Sooner or later you'll have to perform some calculations on the date and time. 
 #Fortunately, there's a class called timedelta in the datetime module that was created for just such a purpose.
 #To create a timedelta object, just do subtraction on the date or datetime objects.
-  from datetime import date
+from datetime import date
 from datetime import datetime
 
 d1 = date(2020, 11, 28)
